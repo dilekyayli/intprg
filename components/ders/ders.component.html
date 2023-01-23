@@ -1,0 +1,157 @@
+<div class="container mt-5">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Dersler</h3>
+            <hr />
+        </div>
+        <div class="col-md-12 text-right">
+            <button class="btn btn-success" (click)="Ekle(modalEkleDuzenle)" [disabled]="">Ders Ekle</button>
+        </div>
+    </div>
+
+
+    <div class="row" id="productListBody">
+        <div class="col-12">
+            <table class="table table-bordered table-stripped rounded table-hover mt-3 h75px">
+                <thead class="bg-dark">
+                    <th>ID</th>
+                    <th>GÖRSEL</th>
+                    <th>DERS ADI</th>
+                    <th>ÖZELLİK</th>
+                    <th>KAYIT TARİHİ</th>
+                    <th>DÜZENLEME TARİHİ</th>
+                    <th>DÜZENLE</th>
+                    <th>SİL</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pro of dersListe">
+                        <td>{{pro.id}}</td>
+                        <td><img src="{{pro.gorsel}}" width="100" height="100" /></td>
+                        <td>{{pro.dersAdi}}</td>
+                        <td class="w50px">{{pro.ozellik}}</td>
+                        <td>{{pro.kaytarih | date: 'dd.MM.yyyy HH:mm:ss'}}</td>
+                        <td>{{pro.duztarih | date: 'dd.MM.yyyy HH:mm:ss'}}</td>
+                        <td><button class="btn btn-sm btn-outline-warning w-100 text-black" (click)="Duzenle(pro, modalEkle)"
+                        [disabled]="fbservis.aktifUye.admin==0">Düzenle</button></td>
+                        <td><button class="btn btn-sm btn-outline-danger w-100 text-black" (click)="Sil(pro, modalSil)"
+                        [disabled]="fbservis.aktifUye.admin==0">Sil</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" #modalEkleDuzenle>
+    <div class="modal-dialog">
+        <form [formGroup]="frm" (ngSubmit)="DersEkleDuzenle()">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-black">
+                    <h5 class="modal-title">{{modalBaslik}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-3">
+                        <label>Ders Adı</label>
+                        <input type="text" class="form-control" formControlName="dersAdi" placeholder="Ders Adı Giriniz">
+                    </div>
+                    <div class="form-group m-3">
+                        <label>Görsel Linki</label>
+                        <input type="text" class="form-control" formControlName="gorsel" placeholder="Ürün Görseli Linki Giriniz">
+                    </div>
+                    <div class="form-group m-3">
+                        <label>Özellik</label>
+                        <input class="form-control" formControlName="ozellik" placeholder="Özellik Giriniz">
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" formControlName="id">
+                        <input type="hidden" class="form-control" formControlName="kaytarih">
+                        <input type="hidden" class="form-control" formControlName="duztarih">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-sm btn-success" value="Kaydet">
+                    <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Kapat</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<form>
+    <div class="row">
+        <div class="form-group m-3">
+            <label>Ders Adı</label>
+            <input type="text" class="form-control" formControlName="dersAdi" placeholder="Ders Adı Giriniz">
+        </div>
+        <div class="form-group m-3">
+            <label>Görsel Linki</label>
+            <input type="text" class="form-control" formControlName="gorsel" placeholder="Ders Görseli Linki Giriniz">
+        </div>
+        <div class="form-group m-3">
+            <label>Özellik</label>
+            <input class="form-control" formControlName="ozellik" placeholder="Özellik Giriniz">
+        </div>
+        <div class="form-group">
+            <input type="hidden" class="form-control" formControlName="id">
+            <input type="hidden" class="form-control" formControlName="kaytarih">
+            <input type="hidden" class="form-control" formControlName="duztarih">
+        </div>
+
+        <input type="submit" class="btn btn-sm btn-successs" value="Kaydet">
+    </div>
+</form>
+<div class="modal" tabindex="-1" #modalEkleDuzenle>
+    <div class="modal-dialog">
+        <form [formGroup]="frm" (ngSubmit)="DersEkleDuzenle()">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-black">
+                    <h5 class="modal-title"{{modalBaslik}}></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-3">
+                        <label>Ders Adı</label>
+                        <input type="text" class="form-control" formControlName="dersAdi" placeholder="Ders Adı Giriniz">
+                    </div>
+                    <div class="form-group m-3">
+                        <label>Görsel Linki</label>
+                        <input type="text" class="form-control" formControlName="gorsel" placeholder="Ders Görseli Linki Giriniz">
+                    </div>
+                    <div class="form-gorup m-3">
+                        <label>Özellik</label>
+                        <input class="form-control" formControlName="ozellik" placeholder="Özellik Giriniz">
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" formControlName="id">
+                        <input type="hidden" class="form-control" formControlName="kaytarih">
+                        <input type="hidden" class="form-control" formControlName="duztarih">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-sm btn-success" value="Kaydet">
+                    <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Kapat</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal" tabindex="-1" #modalSil>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">{{modalBaslik}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6 *ngIf="secPro">{{secPro.dersAdi}} adlı Ders Silinecektir Onaylıyor musunuz?</h6>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-danger" *ngIf="secPro" (click)="DersSil()">Sil</button>
+                <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
