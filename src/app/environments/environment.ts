@@ -8,9 +8,7 @@ export const environment = {
     firebase: {
         projectId: 'intprg',
         appId: '1:953598839257:web:022332def5f0ab03e371c8',
-        storageBucket: 'eshopdb-4ce1b.appshot.com',
         apiKey: 'AIzaSyD3vjyphgkVI3ur5H4qxp7lBByqFcLDTzs',
-        authDomain: 'eshopdb-4ce1b.firebaseapp.com',
         messagingSenderId: '567974556773',
     },
     production: false
